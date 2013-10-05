@@ -114,8 +114,49 @@ Z座標の特定のために、基準軸からの距離を計ります。タン�
 
 じっさいに試してみると分かりますが、実世界の物体を自由に光らせることができるというのは、意外と面白いものです。この効果を使って、単なるスクリーンへの投影とは一風違った表現・演出を模索してみると面白いかもしれません。
 
-シーンの投影
-------------
+仮想シーンの投影
+----------------
 
-（執筆中）
+プロジェクションマッピングでよく用いられる演出のひとつに、現実とは異なる仮想シーンを投影することによって得られる錯視効果があります。これを多用した作品として、例えば次のようなものがあります。
+
+![Box - Bot & Dolly](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig12.jpg)
+
+[Box - Bot & Dolly](https://vimeo.com/75260457)
+
+この手の演出は観客の視点位置に依存するという制約がありますが、効果的に用いることで、現実の物体のあり方を変えるような——観客の現実感を CG で上書きするような、とても幻惑的な効果を導き出すことができます。
+
+例として、先ほどセットアップした箱の中に、下図のような「仮想の箱」を投影することを考えてみましょう。
+
+![Scene projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig13.jpg)
+
+このような効果を得るには、Unity の中で仮想シーンを箱にプロジェクションマップしてから、実世界の中でその結果を箱にプロジェクションマップする、という、２段階のプロジェクションマップを行う必要があります。
+
+具体的には次のようなセットアップになります。
+
+- 「仮想の箱」をセットアップする。現実の箱と同じ座標上に配置します。
+- 観客の視点の位置にカメラを配置する。
+- 観客視点カメラから render texture へレンダリングを行う。
+- Projector コンポーネントを使って render texture を箱に投影する。
+
+![Setup](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig14.png)
+
+このようなセットアップを行うことで、観客の視点から見た仮想シーンの風景が（Unity の中で）箱へ投影され、その結果が（実世界の中で）現実の箱に投影されるわけです。
+
+設定をうまく行うには layer を駆使するとよいでしょう。観客視点の仮想シーンに属するオブジェクトは "Audience" layer に、プロジェクター視点の実世界シーンに属するオブジェクトは "Projector" layer に、というように layer で分類分けし、各々のカメラでは適切なオブジェクトだけがレンダリングされるように調整していきます。
+
+![Layers](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig15.png)
+
+観客視点カメラの FOV は自由に設定できますが、Projector コンポーネントの FOV と必ず一致させるよう注意してください。狭くするほど画質は高まりますが、仮想シーンの範囲も狭まります。
+
+![Audience camera FOV](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig16.png)
+
+Render texture の内容を Projector コンポーネントによって投影する際に、少し特殊なシェーダーを使う必要があります。ライティングや減衰係数を無視して render texture の内容をそのままプロジェクションするシェーダーを用意しました。特にこだわりが無ければ、これをそのまま使えばよいでしょう。
+
+[Assets/Projector/Projector.shader](https://github.com/keijiro/unity-pm-tutor/blob/master/Assets/Projector/Projector.shader)
+
+- [Vine - Unity でプロジェクションマッピングの実験中。ダンボールの中に箱が浮いてる？](https://vine.co/v/h60OjVAAhpi)
+- [Vine - 非現実的なものを出しても面白いかもしれない（Unity でプロジェクションマッピング](https://vine.co/v/h60xgxb0DBD)
+- [Vine - Unity を使ったプロジェクションマッピング続き。暗くなって実験しやすくなった。箱の中に囚われた天使？](https://vine.co/v/h69rizwLKqO)
+
+
 
