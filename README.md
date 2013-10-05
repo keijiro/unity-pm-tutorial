@@ -46,7 +46,7 @@ iPhone の傾斜計はコンパスアプリに付属されているものです�
 
 今回は、白い段ボール箱を投影対象として、下図のようなセットアップにしました。
 
-![Setup](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig1.jpg)
+![Setup](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig1.jpg)
 
 - 箱は人の背ぐらいの高さに配置。
 - プロジェクターは机の上に配置。
@@ -55,7 +55,7 @@ iPhone の傾斜計はコンパスアプリに付属されているものです�
 
 だいたいの配置を行ってから、下図のようなテストパターンを表示して、ほぼ中心に箱が位置するように調整しました。
 
-![Test projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig2.jpg)
+![Test projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig2.jpg)
 
 プロジェクターの傾き調整（縦位置調整）は操作が難しく、ぴったりと合わせることはできないと思います。大まかに合わせておけばよいでしょう。逆に、左右については調整が容易なので、この時点でぴったりと合わせておくことにします。この時点でなるべく不定な要素を潰しておいた方が、あとの調整が楽になるからです。
 
@@ -66,38 +66,38 @@ iPhone の傾斜計はコンパスアプリに付属されているものです�
 
 まずは箱のサイズを測定してモデリングします。こんな感じでテストパターンを貼付けておくとよいでしょう。
 
-![Modeling](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig3.png)
+![Modeling](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig3.png)
 
 箱の位置を特定します。プロジェクターに近い方の縦辺をシーンの基準として、(0,*,0) 上に位置するものとしましょう。高さは距離計で計ります。
 
-![Box position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig4.jpg)
+![Box position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig4.jpg)
 
 上端が 1.847m の高さにあることが分かりました。箱の上手前の頂点がピボットになるよう編集したのち、この点を (0, 184.7, 0) に配置します。
 
-![Box position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig5.png)
+![Box position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig5.png)
 
 次に、プロジェクターの位置にカメラを配置します。距離計で高さを計ります。
 
-![Projector position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig6.jpg)
+![Projector position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig6.jpg)
 
 Z座標の特定のために、基準軸からの距離を計ります。タンジェントから算出する方法もありますが、ここでは下図のようにメジャーを垂らして位置合わせをしつつ水平距離を計りました。
 
-![Projector position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig7.jpg)
+![Projector position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig7.jpg)
 
 プロジェクターの傾きを測定します。このとき、プロジェクター本体の傾きは参考にならないので注意してください。プロジェクター本体の角度と投射方向は一致していないためです（たいていの場合、本体の姿勢よりも上側に傾けて投射されています）。下図のように板を当てて投射錐体を視覚化したうえで、赤線の角度を傾斜計で測定します。その２つの角度の平均値をカメラの姿勢として使います。
 
-![Projector attitude](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig8.jpg)
+![Projector attitude](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig8.jpg)
 
 また、プロジェクターの投射角とカメラの FOV (Field of View) を一致させる必要があります。上で求めた赤線角度の差分がそのまま FOV 値として使えます。また、下図のように写真を取り込んで、Unity の Scene ビュー上で角度を一致させることでも調整が可能です。
 
-![Field of view](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig9.png)
+![Field of view](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig9.png)
 
 調整
 ----
 
 シーンのセットアップが完了したら、プロジェクター側の画面で Game ビューを最大化します。うまく調整が行えていれば、投射される箱と実世界の箱がぴったりと一致するはずです。
 
-![Test projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig10.jpg)
+![Test projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig10.jpg)
 
 とは言っても、多くの場合、一発では一致しません。微妙にずれていたり、まったく見当外れな位置に投射されてしまうかもしれません。大幅にずれている場合は測定に何か致命的なミスがあったと考えられますが、微妙にずれている場合は座標の微調整か、あるいは実物の配置を微調整することで対処しましょう。
 
@@ -106,7 +106,7 @@ Z座標の特定のために、基準軸からの距離を計ります。タン�
 
 ここまでのセットアップにより、箱の各面に任意のテクスチャを投影できるようになりました。視点に依存する類のテクニックを用いることはできませんが、それでもできることは様々にあります。たとえばこんなのはどうでしょう？
 
-![Mountain Brick](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/fig11.jpg)
+![Mountain Brick](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig11.jpg)
 
 [Mountain Brick — Video Game Mapping](https://vimeo.com/71260089)
 
