@@ -46,7 +46,7 @@ iPhone の傾斜計はコンパスアプリに付属されているものです�
 
 今回は、白い段ボール箱を投影対象として、下図のようなセットアップにしました。
 
-![Setup](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig1.jpg)
+![Setup](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig1.jpg)
 
 - 箱は人の肩ぐらいの高さに配置。
 - プロジェクターは机の上に配置。
@@ -55,7 +55,7 @@ iPhone の傾斜計はコンパスアプリに付属されているものです�
 
 だいたいの配置を行ってから、下図のようなテストパターンを表示して、ほぼ中心に箱が位置するように調整しました。
 
-![Test projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig2.jpg)
+![Test projection](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig2.jpg)
 
 プロジェクターの縦位置調整（傾き調整）は操作が難しく、ぴったりと中心に合わせることはできないかもしれません。大まかに合わせておけばよいでしょう。左右については調整が容易なので、この時点でぴったりと合わせておくことにします。この時点でなるべく不定な要素を潰しておいた方が、あとの調整が楽になるからです。
 
@@ -66,40 +66,40 @@ iPhone の傾斜計はコンパスアプリに付属されているものです�
 
 まずは箱のサイズを測定してモデリングします。こんな感じでテストパターンを貼付けておくとよいでしょう。
 
-![Modeling](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig3.png)
+![Modeling](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig3.png)
 
 箱の位置を特定します。プロジェクターに近い方の縦辺をシーンの基準として、(0,*,0) 上に位置するものとしましょう。高さは距離計で計ります。
 
-![Box position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig4.jpg)
+![Box position](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig4.jpg)
 
 上端が 1.847m の高さにあることが分かりました。箱の上手前の頂点がピボットになるよう編集したのち、この点を (0, 184.7, 0) に配置します。
 
-![Box position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig5.png)
+![Box position](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig5.png)
 
 箱の姿勢（Y軸回転）については、大まかな角度を目で求めて設定しておきます。今回のセットアップでは箱の姿勢以外のすべての変数が実測可能なので、姿勢だけは不定な変数として放置することができるのです。
 
 次に、プロジェクターの位置にカメラを配置します。距離計で高さを計ります。
 
-![Projector position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig6.jpg)
+![Projector position](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig6.jpg)
 
 Z座標の特定のために、基準軸からの距離を計ります。タンジェントから算出する方法もありますが、ここでは下図のようにメジャーを垂らして位置合わせをしつつ水平距離を計りました。
 
-![Projector position](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig7.jpg)
+![Projector position](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig7.jpg)
 
 プロジェクターの傾きを測定します。このとき、プロジェクター本体の傾きは参考にならないので注意してください。プロジェクター本体の角度と投射方向が一致していないケースもあるためです。下図のように板を当てて投射錐体を視覚化したうえで、赤線の角度を傾斜計で測定します。その２つの角度の平均値をカメラの姿勢として使います。
 
-![Projector attitude](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig8.jpg)
+![Projector attitude](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig8.jpg)
 
 また、プロジェクターの投射角とカメラの FOV (Field of View) を一致させる必要があります。上で求めた赤線角度の差分がそのまま FOV 値として使えます。また、下図のように写真を取り込んで、Unity の Scene ビュー上で角度を一致させることでも調整が可能です。
 
-![Field of view](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig9.png)
+![Field of view](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig9.png)
 
 調整
 ----
 
 シーンのセットアップが完了したら、プロジェクター側の画面で Game ビューを最大化します。恐らく箱の姿勢（Y軸角度）だけがずれているはずなので、画面を見ながらこの値を増減して調整します。投射される箱と実世界の箱がぴったりと一致する値が見つかればビンゴです。
 
-![Test projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig10.jpg)
+![Test projection](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig10.jpg)
 
 ただ、多くの場合、一発では一致しません。微妙にずれていたり、まったく見当外れな位置に投射されてしまうかもしれません。大幅にずれている場合は測定に何か致命的なミスがあったと考えられます。値の確認や再測定を行いましょう。微妙にずれている場合は、座標の微調整か、あるいは実物の配置の微調整により対処できます。
 
@@ -108,7 +108,7 @@ Z座標の特定のために、基準軸からの距離を計ります。タン�
 
 ここまでのセットアップにより、箱の各面に任意のテクスチャを投影できるようになりました。視点に依存する類のテクニックを用いることはできませんが、それでもできることは多々あります。たとえばこんなのはどうでしょう？
 
-![Mountain Brick](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig11.jpg)
+![Mountain Brick](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig11.jpg)
 
 [Mountain Brick — Video Game Mapping](https://vimeo.com/71260089)
 
@@ -119,7 +119,7 @@ Z座標の特定のために、基準軸からの距離を計ります。タン�
 
 プロジェクションマッピングでよく用いられる演出のひとつに、現実とは異なる仮想シーンを投影することによって得られる錯視効果があります。これを多用した作品として、例えば次のようなものがあります。
 
-![Box - Bot & Dolly](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig12.jpg)
+![Box - Bot & Dolly](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig12.jpg)
 
 [Box - Bot & Dolly](https://vimeo.com/75260457)
 
@@ -127,7 +127,7 @@ Z座標の特定のために、基準軸からの距離を計ります。タン�
 
 例として、先ほどセットアップした箱の中に、下図のような「仮想の箱」を投影することを考えてみましょう。
 
-![Scene projection](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig13.jpg)
+![Scene projection](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig13.jpg)
 
 このような効果を得るには、Unity の中で仮想シーンを箱にプロジェクションマップしてから、実世界の中でその結果を箱にプロジェクションマップする、という、２段階のプロジェクションマップを行う必要があります。
 
@@ -138,21 +138,21 @@ Z座標の特定のために、基準軸からの距離を計ります。タン�
 - 観客視点カメラから render texture へレンダリングを行う。
 - Projector コンポーネントを使って render texture を箱に投影する。
 
-![Setup](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig14.png)
+![Setup](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig14.png)
 
 このようなセットアップを行うことで、観客の視点から見た仮想シーンの風景が（Unity の中で）箱へ投影され、その結果が（実世界の中で）現実の箱に投影されるわけです。
 
 設定をうまく行うには layer を駆使するとよいでしょう。観客視点の仮想シーンに属するオブジェクトは "Audience" layer に、プロジェクター視点の実世界シーンに属するオブジェクトは "Projector" layer に、というように layer で分類分けし、各々のカメラでは適切なオブジェクトだけがレンダリングされるように調整していきます。
 
-![Layers](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig15.png)
+![Layers](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig15.png)
 
 観客視点カメラの FOV は自由に設定できますが、Projector コンポーネントの FOV と必ず一致させるよう注意してください。狭くするほど画質は高まりますが、仮想シーンの範囲も狭まります。
 
-![Audience camera FOV](https://github.com/keijiro/unity-pm-tutor/raw/gh-pages/images/fig16.png)
+![Audience camera FOV](https://github.com/keijiro/unity-pm-tutorial/raw/gh-pages/images/fig16.png)
 
 Render texture の内容を Projector コンポーネントによって投影する際に、少し特殊なシェーダーを使う必要があります。ライティングや減衰係数を無視して render texture の内容をそのままプロジェクションするシェーダーを用意しました。
 
-[Assets/Projector/Projector.shader](https://github.com/keijiro/unity-pm-tutor/blob/master/Assets/Projector/Projector.shader)
+[Assets/Projector/Projector.shader](https://github.com/keijiro/unity-pm-tutorial/blob/master/Assets/Projector/Projector.shader)
 
 特にこだわりが無ければ、これをそのまま使えばよいでしょう。
 
